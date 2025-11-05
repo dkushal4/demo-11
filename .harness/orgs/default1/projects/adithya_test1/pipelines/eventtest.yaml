@@ -1,0 +1,22 @@
+pipeline:
+  name: event-test
+  identifier: eventtest
+  tags: {}
+  projectIdentifier: adithya_test1
+  orgIdentifier: default1
+  stages:
+    - stage:
+        name: ff
+        identifier: ff
+        description: ""
+        type: Custom
+        spec:
+          execution:
+            steps:
+              - step:
+                  type: Wait
+                  name: Wait_1
+                  identifier: Wait_1
+                  spec:
+                    duration: 10m
+        tags: {}
