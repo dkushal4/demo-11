@@ -1,0 +1,22 @@
+pipeline:
+  name: new-1
+  identifier: new1
+  projectIdentifier: demo
+  orgIdentifier: default
+  tags: {}
+  stages:
+    - stage:
+        name: d
+        identifier: d
+        description: ""
+        type: Custom
+        spec:
+          execution:
+            steps:
+              - step:
+                  type: Wait
+                  name: Wait_1
+                  identifier: Wait_1
+                  spec:
+                    duration: 10m
+        tags: {}
