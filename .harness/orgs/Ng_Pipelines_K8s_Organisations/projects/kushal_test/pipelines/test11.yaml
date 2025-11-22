@@ -23,7 +23,7 @@ pipeline:
                       configFiles:
                         store:
                           spec:
-                            connectorRef: terraform-collision-repo
+                            connectorRef: terr
                             gitFetchType: Branch
                             branch: main
                             folderPath: /
@@ -40,7 +40,7 @@ pipeline:
                       configFiles:
                         store:
                           spec:
-                            connectorRef: terraform-collision-repo
+                            connectorRef: terr
                             gitFetchType: Branch
                             branch: main
                             folderPath: /
