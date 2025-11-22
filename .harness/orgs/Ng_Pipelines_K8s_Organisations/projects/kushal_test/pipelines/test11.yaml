@@ -28,6 +28,12 @@ pipeline:
                             branch: main
                             folderPath: /
                           type: Github
+                      backend:
+                        type: TerraformCloud
+                        spec:
+                          connectorRef: terraform-cloud-free
+                          organization: test-log-collision
+                          workspace: log-collision-workspace
                   timeout: 10m
               - step:
                   type: TerraformPlan
