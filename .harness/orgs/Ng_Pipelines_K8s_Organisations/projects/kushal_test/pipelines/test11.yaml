@@ -17,7 +17,7 @@ pipeline:
                   name: terraform_plan
                   identifier: terraform_plan
                   spec:
-                    provisionerIdentifier: collision-test
+                    provisionerIdentifier: collisiontest
                     cloudCliConfiguration:
                       command: Apply
                       configFiles:
@@ -28,19 +28,13 @@ pipeline:
                             branch: main
                             folderPath: /
                           type: Github
-                      backend:
-                        type: TerraformCloud
-                        spec:
-                          connectorRef: terraform-cloud-free
-                          organization: test-log-collision
-                          workspace: log-collision-workspace
                   timeout: 10m
               - step:
                   type: TerraformPlan
                   name: terraform_plan_only
                   identifier: terraform_plan_only
                   spec:
-                    provisionerIdentifier: collision-test
+                    provisionerIdentifier: collisiontest
                     cloudCliConfiguration:
                       command: Apply
                       configFiles:
@@ -51,10 +45,4 @@ pipeline:
                             branch: main
                             folderPath: /
                           type: Github
-                      backend:
-                        type: TerraformCloud
-                        spec:
-                          connectorRef: terraform-cloud-free
-                          organization: test-log-collision
-                          workspace: log-collision-workspace
                   timeout: 10m
