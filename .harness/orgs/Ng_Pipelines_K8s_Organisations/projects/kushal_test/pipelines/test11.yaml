@@ -6,17 +6,55 @@ pipeline:
   tags: {}
   stages:
     - stage:
-        name: test
-        identifier: test
-        description: ""
+        name: terraform_collision_stage
+        identifier: terraform_collision_stage
         type: Custom
         spec:
           execution:
             steps:
               - step:
-                  type: Wait
-                  name: Wait_1
-                  identifier: Wait_1
+                  type: TerraformPlan
+                  name: terraform_plan
+                  identifier: terraform_plan
                   spec:
-                    duration: 10m
-        tags: {}
+                    provisionerIdentifier: collision-test
+                    cloudCliConfiguration:
+                      command: Apply
+                      configFiles:
+                        store:
+                          spec:
+                            connectorRef: terraform-collision-repo
+                            gitFetchType: Branch
+                            branch: main
+                            folderPath: /
+                          type: Github
+                      backend:
+                        type: TerraformCloud
+                        spec:
+                          connectorRef: terraform-cloud-free
+                          organization: test-log-collision
+                          workspace: log-collision-workspace
+                  timeout: 10m
+              - step:
+                  type: TerraformPlan
+                  name: terraform_plan_only
+                  identifier: terraform_plan_only
+                  spec:
+                    provisionerIdentifier: collision-test
+                    cloudCliConfiguration:
+                      command: Apply
+                      configFiles:
+                        store:
+                          spec:
+                            connectorRef: terraform-collision-repo
+                            gitFetchType: Branch
+                            branch: main
+                            folderPath: /
+                          type: Github
+                      backend:
+                        type: TerraformCloud
+                        spec:
+                          connectorRef: terraform-cloud-free
+                          organization: test-log-collision
+                          workspace: log-collision-workspace
+                  timeout: 10m
